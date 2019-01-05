@@ -35,7 +35,7 @@ for event in events:
 
     if startdate.date() == nextDays:
         found = True
-        wakeupTime = startdate.time()
+        wakeupTime = startdate
 
 if not found:
     wakeupTime = datetime.datetime.now() + datetime.timedelta(hours=5)
