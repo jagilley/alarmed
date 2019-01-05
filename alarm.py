@@ -63,7 +63,7 @@ wakeupTime = getAlarm.wakeupTime
 theFinalCountdown = (wakeupTime - datetime.datetime.now()).seconds
 print("Sleeping for", theFinalCountdown, "seconds")
 
-time.sleep(theFinalCountdown)
+#time.sleep(theFinalCountdown)
 
 # Time for the alarm to go off
 print("Wake Up!")
