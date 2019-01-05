@@ -56,8 +56,9 @@ time.sleep(time_diff_seconds)
 # Time for the alarm to go off
 print("Wake Up!")
 import cal
+import weather
 
-finalText = "wake up, bitch! " + cal.toSpeak
+finalText = "wake up, bitch! " + weather.toSpeak + " " + cal.toSpeak
 print(finalText)
 
 subprocess.call(["say", "'{}'".format(finalText)])
