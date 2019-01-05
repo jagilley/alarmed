@@ -2,6 +2,7 @@ import datetime
 import os
 import time
 import random
+import subprocess
 
 def check_alarm_input(alarm_time):
 	"""Checks to see if the user has entered in a valid alarm time"""
@@ -55,3 +56,4 @@ time.sleep(time_diff_seconds)
 
 # Time for the alarm to go off
 print("Wake Up!")
+subprocess.call(["say", "'wake up, bitch!'"])
