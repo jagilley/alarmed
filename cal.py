@@ -25,16 +25,22 @@ def main():
     if not events:
         print('No upcoming events found.')
     today = datetime.datetime.today()
+    nextDays = (today + datetime.timedelta(days=2)).date()
     #todayEventList = [event for event in events if event['start'].get('dateTime', event['start'].get('date')) > today]
     #print(todayEventList)
     tel = []
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
         end = event['end'].get('dateTime', event['end'].get('date'))
-        startdate = parse(start)
-        if startdate > today:
+        startdate = parse(start).replace(tzinfo=None)
+        if startdate.date() == nextDays:
             tel.append(event)
-        print(start, end, event['summary'])
+        print(event['summary'])
+    
+    print("---")
+    
+    for ev in tel:
+        print(ev['summary'])
 
 if __name__ == '__main__':
     main()
