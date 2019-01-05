@@ -8,39 +8,30 @@ from dateutil.parser import parse
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 
-def main():
-    store = file.Storage('token.json')
-    creds = store.get()
-    if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('/Users/jaspergilley/Code/alarmed/credentials.json', SCOPES)
-        creds = tools.run_flow(flow, store)
-    service = build('calendar', 'v3', http=creds.authorize(Http()))
+store = file.Storage('token.json')
+creds = store.get()
+if not creds or creds.invalid:
+    flow = client.flow_from_clientsecrets('/Users/jaspergilley/Code/alarmed/credentials.json', SCOPES)
+    creds = tools.run_flow(flow, store)
+service = build('calendar', 'v3', http=creds.authorize(Http()))
 
-    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    events_result = service.events().list(calendarId='jaspergilley2021@u.northwestern.edu', timeMin=now,
-                                        maxResults=10, singleEvents=True,
-                                        orderBy='startTime').execute()
-    events = events_result.get('items', [])
+now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+events_result = service.events().list(calendarId='jaspergilley2021@u.northwestern.edu', timeMin=now,
+                                    maxResults=10, singleEvents=True,
+                                    orderBy='startTime').execute()
+events = events_result.get('items', [])
 
-    if not events:
-        print('No upcoming events found.')
-    today = datetime.datetime.today()
-    nextDays = (today + datetime.timedelta(days=2)).date()
-    #todayEventList = [event for event in events if event['start'].get('dateTime', event['start'].get('date')) > today]
-    #print(todayEventList)
-    tel = []
-    for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        end = event['end'].get('dateTime', event['end'].get('date'))
-        startdate = parse(start).replace(tzinfo=None)
-        if startdate.date() == nextDays:
-            tel.append(event)
-        print(event['summary'])
-    
-    print("---")
-    
-    for ev in tel:
-        print(ev['summary'])
+if not events:
+    print('No upcoming events found.')
+today = datetime.datetime.today()
+nextDays = (today + datetime.timedelta(days=2)).date()
+tel = []
+for event in events:
+    start = event['start'].get('dateTime', event['start'].get('date'))
+    end = event['end'].get('dateTime', event['end'].get('date'))
+    startdate = parse(start).replace(tzinfo=None)
+    if startdate.date() == nextDays:
+        tel.append(event)
 
-if __name__ == '__main__':
-    main()
+for ev in tel:
+    print(ev['summary'])
