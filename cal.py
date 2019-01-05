@@ -33,5 +33,11 @@ for event in events:
     if startdate.date() == nextDays:
         tel.append(event)
 
-for ev in tel:
-    print(ev['summary'])
+toSpeak = "The following items are on your calendar today: "
+
+for itc, ev in enumerate(tel):
+    print(ev)
+    if itc != len(tel) - 1:
+        toSpeak = toSpeak + ev['summary'] + ", "
+    else:
+        toSpeak = toSpeak + "and " + ev['summary'] + "."
