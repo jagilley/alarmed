@@ -3,6 +3,7 @@ import os
 import time
 import random
 import subprocess
+import random
 """
 def check_alarm_input(alarm_time):
 	if len(alarm_time) == 1: # [Hour] Format
@@ -58,7 +59,10 @@ print("Wake Up!")
 import cal
 import weather
 
-finalText = "wake up, bitch! " + weather.toSpeak + " " + cal.toSpeak
+with open("/Users/jaspergilley/Code/alarmed/greetings.txt", 'r') as f:
+	greetings = f.read().split("\n")
+
+finalText = random.choice(greetings) + " " + weather.toSpeak + " " + cal.toSpeak
 print(finalText)
 
 subprocess.call(["say", "'{}'".format(finalText)])
