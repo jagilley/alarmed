@@ -38,6 +38,6 @@ toSpeak = "The following items are on your calendar today: "
 for itc, ev in enumerate(tel):
     print(ev)
     if itc != len(tel) - 1:
-        toSpeak = toSpeak + ev['summary'] + ", "
+        toSpeak = toSpeak + "{} at {}, ".format(ev["summary"], str(ev["start"]["dateTime"]))
     else:
-        toSpeak = toSpeak + "and " + ev['summary'] + "."
+        toSpeak = toSpeak + "and {} at {}.".format(ev["summary"], str(ev["start"]["dateTime"]))

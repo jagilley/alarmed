@@ -3,9 +3,8 @@ import os
 import time
 import random
 import subprocess
-
+"""
 def check_alarm_input(alarm_time):
-	"""Checks to see if the user has entered in a valid alarm time"""
 	if len(alarm_time) == 1: # [Hour] Format
 		if alarm_time[0] < 24 and alarm_time[0] >= 0:
 			return True
@@ -53,7 +52,7 @@ print("Alarm set to go off in %s" % datetime.timedelta(seconds=time_diff_seconds
 
 # Sleep until the alarm goes off
 time.sleep(time_diff_seconds)
-
+"""
 # Time for the alarm to go off
 print("Wake Up!")
 import cal
