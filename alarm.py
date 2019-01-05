@@ -4,6 +4,7 @@ import time
 import random
 import subprocess
 import random
+
 """
 def check_alarm_input(alarm_time):
 	if len(alarm_time) == 1: # [Hour] Format
@@ -54,6 +55,12 @@ print("Alarm set to go off in %s" % datetime.timedelta(seconds=time_diff_seconds
 # Sleep until the alarm goes off
 time.sleep(time_diff_seconds)
 """
+
+
+import getAlarm
+wakeupTime = getAlarm.wakeupTime
+print(wakeupTime)
+
 # Time for the alarm to go off
 print("Wake Up!")
 import cal
