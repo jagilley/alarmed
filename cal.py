@@ -47,7 +47,7 @@ for event in events:
     start = event['start'].get('dateTime', event['start'].get('date'))
     end = event['end'].get('dateTime', event['end'].get('date'))
     startdate = parse(start).replace(tzinfo=None)
-    if startdate.date() == nextDays:
+    if startdate.date() == today.date():
         tel.append(event)
 
 toSpeak = "The following items are on your calendar today: "
@@ -57,3 +57,6 @@ for itc, ev in enumerate(tel):
         toSpeak = toSpeak + "{} at {}, ".format(ev["summary"], oclocker(ev["start"]["dateTime"]))
     else:
         toSpeak = toSpeak + "and {} at {}.".format(ev["summary"], oclocker(ev["start"]["dateTime"]))
+
+if len(tel) == 0:
+    toSpeak = "You have no items on your calendar today."
