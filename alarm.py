@@ -4,6 +4,7 @@ import time
 import random
 import subprocess
 import random
+import platform
 
 """
 def check_alarm_input(alarm_time):
@@ -76,4 +77,10 @@ with open("/Users/jaspergilley/Code/alarmed/greetings.txt", 'r') as f:
 finalText = random.choice(greetings) + " " + weather.toSpeak + " " + cal.toSpeak
 print(finalText)
 
-subprocess.call(["say", "'{}'".format(finalText)])
+if platform.system() == "Darwin":
+	#it's running on my MBP
+	command = "say"
+else:
+	command = "espeak"
+
+subprocess.call([command, "'{}'".format(finalText)])

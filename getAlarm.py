@@ -33,9 +33,10 @@ for event in events:
     end = event['end'].get('dateTime', event['end'].get('date'))
     startdate = parse(start).replace(tzinfo=None)
 
-    if startdate.date() == nextDays:
+    if startdate.date() == today.date():
         found = True
         wakeupTime = startdate
 
 if not found:
-    wakeupTime = datetime.datetime.now() + datetime.timedelta(hours=5)
+    print("No alarm found for today; exiting program")
+    exit()
