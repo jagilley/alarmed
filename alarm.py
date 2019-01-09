@@ -38,6 +38,7 @@ else:
 	command = "espeak"
 	with open("/home/pi/Code/alarmed/greetings.txt", 'r') as f:
 		greetings = f.read().split("\n")
+	subprocess.call(["omxplayer", "--vol", "-600", "/home/pi/Code/alarmed/audio/c.mp3"])
 
 finalText = random.choice(greetings) + " " + weather.toSpeak + " " + cal.toSpeak
 print(finalText)
