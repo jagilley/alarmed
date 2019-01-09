@@ -26,7 +26,7 @@ def oclocker(inDate):
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 
-store = file.Storage('token.json')
+store = file.Storage('/home/pi/Code/alarmed/token.json')
 creds = store.get()
 if not creds or creds.invalid:
     flow = client.flow_from_clientsecrets('/home/pi/Code/alarmed/credentials.json', SCOPES)
