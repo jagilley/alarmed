@@ -4,6 +4,7 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 from dateutil.parser import parse
+import platform
 
 def oclocker(inDate):
     if type(inDate) != str:
@@ -28,7 +29,7 @@ SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 store = file.Storage('token.json')
 creds = store.get()
 if not creds or creds.invalid:
-    flow = client.flow_from_clientsecrets('/Users/jaspergilley/Code/alarmed/credentials.json', SCOPES)
+    flow = client.flow_from_clientsecrets('/home/pi/Code/alarmed/credentials.json', SCOPES)
     creds = tools.run_flow(flow, store)
 service = build('calendar', 'v3', http=creds.authorize(Http()))
 
